@@ -1,0 +1,65 @@
+body {
+  background-color: #000;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  color: #f6f6f6;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#app #main-navigation {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  align-items: center;
+  padding-top: 40px;
+}
+
+#app #main-navigation #nav-brand {
+  display: flex;
+  align-items: center;
+  width: 30%;
+}
+
+#app #main-navigation #nav-brand img {
+  width: 80px;
+}
+
+#app #main-navigation #nav-links {
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#site-bg {
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
+
+#main-content {
+  margin-top: 25%;
+  width: 40%;
+}
+
+#main-content h1 {
+  text-align: center;
+}
+
+#homepage-subheader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#home p {
+  width: 100%;
+  font-size: 30px;
+}

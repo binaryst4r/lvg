@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="118px" height="117px" viewBox="0 0 118 117" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>mycon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="-137.220348%" y1="14.7401495%" x2="233.775746%" y2="85.7761549%" id="linearGradient-1">
+            <stop stop-color="#47FF0A" offset="0%"></stop>
+            <stop stop-color="#0AC2FF" offset="26.7161885%"></stop>
+            <stop stop-color="#FF0AC2" offset="50.7364242%"></stop>
+            <stop stop-color="#C2FF0A" offset="76.3543801%"></stop>
+            <stop stop-color="#FF0A47" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-5.0%" y="-0.9%" width="110.0%" height="101.7%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="0 0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-5.0%" y="-0.9%" width="110.0%" height="101.7%" filterUnits="objectBoundingBox" id="filter-3">
+            <feGaussianBlur stdDeviation="0 0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy" transform="translate(-43.000000, -208.000000)">
+            <g id="mycon" transform="translate(44.000000, 209.000000)">
+                <path d="M58,-0.5 C62.149356,-0.5 65.7595561,18.3715008 69.4977282,57.4523912 L69.5501082,58 L46.4498918,58 L46.5022718,57.4523912 C50.2404439,18.3715008 53.850644,-0.5 58,-0.5 Z M58,115.5 C53.850644,115.5 50.2404439,96.6284992 46.5022718,57.5476088 L46.4498918,57 L69.5501082,57 L69.4977282,57.5476088 C65.7595561,96.6284992 62.149356,115.5 58,115.5 Z" id="Combined-Shape" stroke="url(#linearGradient-1)"></path>
+                <path d="M58,-0.5 C62.149356,-0.5 65.7595561,18.3715008 69.4977282,57.4523912 L69.5501082,58 L46.4498918,58 L46.5022718,57.4523912 C50.2404439,18.3715008 53.850644,-0.5 58,-0.5 Z M58,115.5 C53.850644,115.5 50.2404439,96.6284992 46.5022718,57.5476088 L46.4498918,57 L69.5501082,57 L69.4977282,57.5476088 C65.7595561,96.6284992 62.149356,115.5 58,115.5 Z" id="Combined-Shape" stroke="url(#linearGradient-1)" transform="translate(58.000000, 57.500000) rotate(45.000000) translate(-58.000000, -57.500000) "></path>
+                <path d="M58,-0.5 C62.149356,-0.5 65.7595561,18.3715008 69.4977282,57.4523912 L69.5501082,58 L46.4498918,58 L46.5022718,57.4523912 C50.2404439,18.3715008 53.850644,-0.5 58,-0.5 Z M58,115.5 C53.850644,115.5 50.2404439,96.6284992 46.5022718,57.5476088 L46.4498918,57 L69.5501082,57 L69.4977282,57.5476088 C65.7595561,96.6284992 62.149356,115.5 58,115.5 Z" id="Combined-Shape" stroke="url(#linearGradient-1)" filter="url(#filter-2)" transform="translate(58.000000, 57.500000) rotate(90.000000) translate(-58.000000, -57.500000) "></path>
+                <path d="M58,-0.5 C62.149356,-0.5 65.7595561,18.3715008 69.4977282,57.4523912 L69.5501082,58 L46.4498918,58 L46.5022718,57.4523912 C50.2404439,18.3715008 53.850644,-0.5 58,-0.5 Z M58,115.5 C53.850644,115.5 50.2404439,96.6284992 46.5022718,57.5476088 L46.4498918,57 L69.5501082,57 L69.4977282,57.5476088 C65.7595561,96.6284992 62.149356,115.5 58,115.5 Z" id="Combined-Shape" stroke="url(#linearGradient-1)" filter="url(#filter-3)" transform="translate(58.000000, 57.500000) rotate(135.000000) translate(-58.000000, -57.500000) "></path>
+                <ellipse id="Oval" fill="#FFFFFF" cx="58" cy="57.5" rx="5" ry="4.5"></ellipse>
+            </g>
+        </g>
+    </g>
+</svg>
