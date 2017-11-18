@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import mycon from './images/mycon-gradient-neon.png';
-import './App.css';
 let moveDirection = 1
 
 const colorArray = ["#47FF0A", "0AC2FF", "#FF0AC2", "#C2FF0A", "#FF0A47"]
-
+for (let i=0; i < 25; i++) {
+  colorArray.push("#fff")
+}
 const star = {
   x: Math.random() * window.innerWidth,
   y: Math.random() * window.innerHeight,
@@ -36,7 +37,9 @@ class App extends Component {
 
   componentDidMount() {
     this.setBackground();
+    this.animate();
     this.interval = setInterval(this.tick, 1000);
+    window.addEventListener('resize', this.setBackground)
   }
 
   componentWillUnmount() {
@@ -45,7 +48,9 @@ class App extends Component {
 
   animate(){
     let ctx = this.refs.canvas.getContext('2d');
-
+    for (let i=0; i<10; i++) {
+      console.log('poo')
+    }
     ctx.clearRect(0,0, window.innerWidth, window.innerHeight);
     star.draw(ctx);
 
@@ -84,11 +89,11 @@ class App extends Component {
       bg.fill();
 
     }
-    bg.beginPath();
-    bg.arc(300,300, 40, 0, Math.PI * 2, false);
-    bg.fillStyle = "#000";
-    bg.fill()
-    this.animate()
+    // bg.beginPath();
+    // bg.arc(300,300, 40, 0, Math.PI * 2, false);
+    // bg.fillStyle = "#000";
+    // bg.fill()
+    // this.animate()
   }
 
   // update() {
@@ -114,8 +119,11 @@ class App extends Component {
             <a>linkedin</a>
           </div>
         </nav>
+        <div id="homepage-hero-text">
+          Designer.developer( )
+        </div>
         <div id="main-content">
-          <canvas width={window.innerWidth} height={window.innerHeight} style={{
+          <canvas width={window.innerWidth} height={window.innerHeight/2} style={{
             position: 'absolute',
             left: 0,
             top: 0,
