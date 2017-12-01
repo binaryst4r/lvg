@@ -67,4 +67,40 @@ body {
 
 #homepage-hero-text {
   font-size: 60px;
+  width: 100%;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  margin-left: auto;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 69;
+
+  #hero-input {
+    input {
+      appearance: none;
+      -webkit-appearance: none;
+      background: none;
+      font-size: 50px;
+      line-height: 1;
+      color: #fff;
+      border: none;
+      width: 120px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    &::before {
+      content: '(';
+    }
+
+    &::after {
+      content: ')';
+    }
+
+  }
 }

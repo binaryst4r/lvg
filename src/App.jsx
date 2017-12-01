@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import mycon from './images/mycon-gradient-neon.png';
-let moveDirection = 1
+import Particle from './animations/particle.js';
+let moveDirection = 1;
+
 
 const colorArray = ["#47FF0A", "0AC2FF", "#FF0AC2", "#C2FF0A", "#FF0A47"]
-for (let i=0; i < 25; i++) {
-  colorArray.push("#fff")
-}
 const star = {
   x: Math.random() * window.innerWidth,
   y: Math.random() * window.innerHeight,
@@ -18,6 +17,9 @@ const star = {
     ctx.closePath();
     ctx.fillStyle = "#fff";
     ctx.fill();
+  },
+  update() {
+
   }
 }
 
@@ -25,32 +27,64 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      secondsElapsed: 0
+      secondsElapsed: 0,
+      heroText: '',
+      funkMeter: 200,
+      width: window.innerWidth,
+      height: window.innerHeight,
+      ratio: window.devicePixelRatio || 1
     }
+
+    this.objects = []
   }
 
-  tick = () => {
+  componentWillMount() {
+
+  }
+
+  handleResize = () => {
     this.setState({
-      secondsElapsed: this.state.secondsElapsed + 1
-    });
+      width: window.innerWidth,
+      height: window.innerHeight
+    })
+  }
+
+  _changeHeroText = (value) => {
+    this.setState({
+      heroText: value
+    })
+
+    if (value === 'cuck') {
+      this.shootStar()
+    }
   }
 
   componentDidMount() {
-    this.setBackground();
-    this.animate();
-    this.interval = setInterval(this.tick, 1000);
-    window.addEventListener('resize', this.setBackground)
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  animate(){
+    window.addEventListener('resize',  this.handleResize)
     let ctx = this.refs.canvas.getContext('2d');
-    for (let i=0; i<10; i++) {
-      console.log('poo')
+    this.initParticle(ctx);
+    this.animate(ctx);
+    this.setBackground();
+  }
+
+
+  animate = (ctx) => {
+    requestAnimationFrame(() => this.animate(ctx));
+    ctx.fillStyle = 'rgba(0,0,0,0.05)';
+    ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+    this.objects.forEach(object => {object.update()});
+  }
+
+  initParticle = (ctx) => {
+    for (let i = 0; i < 50; i++) {
+      const radius = (Math.random() * 2) + 1;
+      this.objects.push(new Particle(ctx, window.innerWidth/2, window.innerHeight/2, radius, this.randomColor()))
     }
+  }
+
+  shootStar(){
+    const {funkMeter} = this.state;
+    let ctx = this.refs.canvas.getContext('2d');
     ctx.clearRect(0,0, window.innerWidth, window.innerHeight);
     star.draw(ctx);
 
@@ -75,25 +109,31 @@ class App extends Component {
     star.x += star.dx
     star.y += star.dy
 
-    requestAnimationFrame(() => {this.animate()});
+    requestAnimationFrame(() => {this.shootStar()});
   }
 
   setBackground = () => {
     let bg = this.refs.bg.getContext('2d');
-    for (let i = 0; i < 3200; i++) {
+    for (let i = 0; i < 100; i++) {
       let x = Math.random() * window.innerWidth;
       let y = Math.random() * window.innerHeight;
-      bg.beginPath()
-      bg.arc(x, y, Math.random() * 2, 0, Math.PI * 2, false);
-      bg.fillStyle = colorArray[Math.floor(Math.random() * colorArray.length)];
+      let fillColor = colorArray[Math.floor(Math.random() * colorArray.length)];
+      bg.beginPath();
+      bg.shadowBlur = 30;
+      bg.shadowColor = fillColor;
+      bg.arc(x, y, Math.random() * 4, 0, Math.PI * 2, false);
+      bg.fillStyle = '#fff';
       bg.fill();
-
     }
+
+    // moon
     // bg.beginPath();
-    // bg.arc(300,300, 40, 0, Math.PI * 2, false);
-    // bg.fillStyle = "#000";
+    // bg.shadowBlur = 100;
+    // bg.shadowColor = '#fff';
+    // bg.arc(window.innerWidth,0, 100, 0, Math.PI * 2, false);
+    // bg.fillStyle = "#fff";
     // bg.fill()
-    // this.animate()
+    // this.shootStar()
   }
 
   // update() {
@@ -103,9 +143,19 @@ class App extends Component {
   //   requestAnimationFrame(() => {this.update()});
   // }
 
+  _handleMouseMove = (e) => {
+    // console.log(e.screenX, e.screenY)
+  }
+
+  randomColor = () => {
+    const colorArray = ["#47FF0A", "0AC2FF", "#FF0AC2", "#C2FF0A", "#FF0A47"];
+    return colorArray[Math.floor(Math.random() * colorArray.length)];
+  }
+
   render() {
+    const {heroText, width, height, ratio} = this.state;
     return (
-      <div id="app">
+      <div onMouseMove={this._handleMouseMove} id="app">
         <nav id='main-navigation'>
           <div id="nav-brand">
             <img alt="" src={mycon} id="mycon"/>
@@ -120,20 +170,28 @@ class App extends Component {
           </div>
         </nav>
         <div id="homepage-hero-text">
-          Designer.developer( )
+          <span>Designer.developer</span>
+          <div id="hero-input">
+            <input
+              onChange={(e) => this._changeHeroText(e.target.value)}
+              autoFocus='true'
+              value={`${heroText}`}
+              type="text"/>
+          </div>
         </div>
         <div id="main-content">
-          <canvas width={window.innerWidth} height={window.innerHeight/2} style={{
+          <canvas width={width * ratio} height={height * ratio} style={{
             position: 'absolute',
             left: 0,
             top: 0,
-            zIndex: 1
+            zIndex: -1
           }} ref='bg'/>
-          <canvas width={window.innerWidth} height={window.innerHeight} style={{
+          
+          <canvas width={width * ratio} height={height * ratio} style={{
             position: 'absolute',
             left: 0,
             top: 0,
-            zIndex: 2
+            zIndex: -2
           }} ref='canvas'/>
           <div id="homepage-subheader">
             <span>Designer</span>
