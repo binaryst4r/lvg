@@ -1,11 +1,8 @@
-import {react, Component} from 'react';
-
-class Particle extends Component {
+class Particle {
   constructor(ctx, x, y, radius, color) {
-    super();
-    this.state = {
-      originalXPosition: x,
-      originalYPostition: y
+    this.originalPosition = {
+      x: x,
+      y: y
     }
     this.ctx = ctx;
     this.x = x;
@@ -13,8 +10,9 @@ class Particle extends Component {
     this.radius = radius;
     this.color = color;
     this.radians = Math.random() * Math.PI * 2;
-    this.velocity = 0.05;
-    this.distanceFromCenter = this.randomIntFromRange(50,120)
+    // spinning velocity, remove to remove spin effect
+    this.velocity = 0.0003;
+    this.distanceFromCenter = this.randomIntFromRange(0, window.innerWidth/2)
   }
 
 
@@ -22,15 +20,18 @@ class Particle extends Component {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  update = () => {
-    const {originalXPosition, originalYPostition} = this.state;
+  update = (mouse, shoot = false) => {
     const lastPoint = {
       x: this.x,
       y: this.y
     }
+
+    // drag effect
+    this.originalPosition.x += (mouse.x - this.originalPosition.x) * (Math.random() * 0.002);
+    this.originalPosition.y += (mouse.y - this.originalPosition.y) * (Math.random() * 0.002);
     this.radians += this.velocity
-    this.x = originalXPosition + Math.cos(this.radians) * this.distanceFromCenter
-    this.y = originalYPostition + Math.sin(this.radians) * this.distanceFromCenter
+    this.x = this.originalPosition.x + Math.cos(this.radians) * this.distanceFromCenter
+    this.y = this.originalPosition.y + Math.sin(this.radians) * this.distanceFromCenter
     this.draw(this.ctx, lastPoint);
   }
 
@@ -45,4 +46,4 @@ class Particle extends Component {
   }
 }
 
-export default Particle
+export default Particle;
