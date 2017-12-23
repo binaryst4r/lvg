@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import mycon from './images/mycon-gradient-neon.png';
 import larry from './images/larry.jpg';
-import Particle from './animations/particle.js';
-let moveDirection = 1;
-
+import Particle from './animations/particle';
+import {sendMail} from './utils/email/sendgrid';
 
 const colorArray = ["#47FF0A", "0AC2FF", "#FF0AC2", "#C2FF0A", "#FF0A47"]
 const star = {
@@ -30,6 +29,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      showConfirmation: false,
+      email: '',
+      favoriteMovie: '',
+      message: '',
       secondsElapsed: 0,
       heroText: '',
       funkMeter: 20,
@@ -48,6 +51,27 @@ class App extends Component {
     this.objects = []
   }
 
+  sendMail = (email, favoriteMovie, message) => {
+
+    let headers = new Headers({
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json'
+    })
+
+    let init = {
+      method: 'POST',
+      headers: headers,
+      mode: 'no-cors',
+      cache: 'default',
+      body: JSON.stringify({email: email, favorite_movie: favoriteMovie, message: message})
+    }
+    fetch("http://localhost:3000/webhooks/sendgrid", init).then((response) => {
+      this.setState({
+        showConfirmation: true
+      })
+    })
+  }
+
   handleResize = () => {
     this.setState({
       width: window.innerWidth,
@@ -56,6 +80,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log(process.env.REACT_APP_SENDGRID_API_KEY)
     window.addEventListener('resize',  this.handleResize);
     window.addEventListener('scroll',  this._handleScroll);
     // window.addEventListener('click',  this.shootStar);
@@ -72,6 +97,11 @@ class App extends Component {
     this.setBackground();
   }
 
+  scrollToContent = () => {
+    let windowHeight = window.innerHeight;
+    window.scrollTo({top: windowHeight, behavior: 'smooth'})
+    this._handleScroll()
+  }
 
   animate = (particleCtx) => {
     requestAnimationFrame(() => this.animate(particleCtx));
@@ -90,7 +120,6 @@ class App extends Component {
   }
 
   shootStar(){
-    const {funkMeter} = this.state;
     let ctx = this.refs.canvas.getContext('2d');
     ctx.clearRect(0,0, window.innerWidth, window.innerHeight);
     star.draw(ctx);
@@ -124,7 +153,6 @@ class App extends Component {
     for (let i = 0; i < 250; i++) {
       let x = Math.random() * window.innerWidth;
       let y = Math.random() * window.innerHeight;
-      let fillColor = colorArray[Math.floor(Math.random() * colorArray.length)];
       bg.beginPath();
       bg.shadowBlur = 30;
       bg.shadowColor = "#fff";
@@ -161,7 +189,7 @@ class App extends Component {
 
   _handleScroll = () => {
     this.setState({
-      invertNav: window.scrollY > window.innerHeight-40,
+      invertNav: window.scrollY >= window.innerHeight,
       scrollY: window.scrollY
     })
   }
@@ -170,8 +198,24 @@ class App extends Component {
     return colorArray[Math.floor(Math.random() * colorArray.length)];
   }
 
+  submitForm = (e) => {
+    e.preventDefault()
+    const {email, favoriteMovie, message} = this.state;
+    if (email && favoriteMovie && message) {
+      sendMail(email, favoriteMovie, message)
+    }
+  }
+
   render() {
-    const {heroText, width, height, ratio, scrollY} = this.state;
+    const {
+      width,
+      height,
+      ratio,
+      scrollY,
+      email,
+      favoriteMovie,
+      message
+    } = this.state;
 
     return (
       <div id="app">
@@ -184,20 +228,44 @@ class App extends Component {
               Larry Gust
             </h1>
           </div>
-
+          <h2
+            style={{opacity: this.state.invertNav ? '1' : '0'}}
+            id="developer-designer">
+            Developer.designer( )
+          </h2>
           <div id="nav-links">
-            <a href="https://www.github.com/binaryst4r" target="_blank">github</a>
-            <a>linkedin</a>
+            <a
+              href="https://www.github.com/binaryst4r"
+              target="_blank"
+              rel="noopener noreferrer">
+              github
+            </a>
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/binaryst4r">
+              linkedin
+            </a>
+            <a
+              target="_blank"
+              href="//s3.us-east-2.amazonaws.com/lvg/resume_2018.pdf">
+              resume
+            </a>
           </div>
         </nav>
 
         <div onMouseMove={this._handleMouseMove}  id="top-hero">
           <h2 style={{opacity: 1 - `${scrollY/500}`}}>
-            <span className="funky">Experience</span> the Web
+            Stay <span className="funky">Creative</span>
           </h2>
-          {/* <p className="subheader">
+          <p style={{opacity: 1 - `${scrollY/350}`}} className="subheader">
             (move mouse for more effect)
-          </p> */}
+          </p>
+
+          <div onClick={() => this.scrollToContent()} id="see-more">
+            see more<br/>
+            &darr;
+            &darr;
+          </div>
           <canvas width={width * ratio} height={height * ratio} style={{
             position: 'fixed',
             left: 0,
@@ -216,15 +284,13 @@ class App extends Component {
         <div
           style={{top: window.innerHeight}}
           id="main-content">
-          <img id="lvg-img" src={larry}/>
-          <section id="top-section">
-            <h2>Developer.designer( )</h2>
+          <section id="intro-header">
+            <img alt="Larry Gust" id="lvg-img" src={larry}/>
             <p>
               I'm Larry - a web developer with a knack for creating awesome user experiences.
               I'm currently living in my hometown of Chicago, IL and working as a freelance web developer.
               At the moment, I am digging react, using a ruby backend when needed.
             </p>
-
           </section>
 
           <section>
@@ -244,14 +310,46 @@ class App extends Component {
             </p>
           </section>
 
-          <section className="wrapper">
-            <div className="content">
-              <h3>Get in touch!</h3>
-              <p>
-                I am currently taking new work so please hit me up if you have a cool idea!
-                I am also open to full time opportunities with the right company. Cheers!
-              </p>
-            </div>
+          <section>
+            <h3>Get in touch!</h3>
+            <p>
+              I am currently taking new work so please hit me up if you have a cool idea!
+              I am also open to full time opportunities with the right company. Cheers!
+            </p>
+
+            {this.state.showConfirmation ?
+              <div id="confirmation"></div>
+            :
+              <form
+                onSubmit={this.submitForm}
+                id="contact-form">
+                <div className="form-field">
+                  <input
+                    placeholder="Email address"
+                    type="email"
+                    value={email}
+                    onChange={(e) => this.setState({email: e.target.value})}/>
+                </div>
+                <div className="form-field">
+                  <input
+                    onChange={(e) => this.setState({favoriteMovie: e.target.value})}
+                    placeholder="What's your favorite movie?"
+                    type="text"
+                    value={favoriteMovie}/>
+                </div>
+                <div className="form-field">
+                  <textarea
+                    onChange={(e) => this.setState({message: e.target.value})}
+                    placeholder="Introduce yourself..."
+                    rows="5"
+                    value={message}/>
+                </div>
+
+                <button className="btn btn-primary" type="submit">
+                  Submit
+                </button>
+              </form>
+            }
           </section>
         </div>
       </div>

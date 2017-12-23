@@ -9,7 +9,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #66b3ba;
+  color: #893168;
 }
 
 #app {
@@ -23,24 +23,37 @@ a {
 #app #main-navigation {
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 100%;
   align-items: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
   position: fixed;
   z-index: 101;
   transition: color 0.5s linear;
+  height: 110px;
 
   &.inverted {
     color: #474747;
-    transition: color 0.5s linear;
+    transition: all 0.5s linear;
+    background-color: #fff;
+    border-bottom: 1px solid #f6f6f6;
+  }
+
+  #developer-designer {
+    font-family: 'Exo 2', 'sans-serif';
+    font-size: 40px;
+    line-height: 1;
+    color: #474747;
+    font-weight: bolder;
+    width: 40%;
+    text-align: center;
+    transition: all 0.5s linear;
   }
 }
 
 #app #main-navigation #nav-brand {
   display: flex;
   align-items: center;
-  width: 30%;
+  justify-content: center;
+  width: 25%;
   font-family: 'Exo 2', 'sans-serif';
 }
 
@@ -50,9 +63,9 @@ a {
 }
 
 #app #main-navigation #nav-links {
-  width: 15%;
+  width: 25%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   font-family: 'Exo 2', 'sans-serif';
   font-weight: bolder;
 }
@@ -100,45 +113,34 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 80px;
+  padding-top: 150px;
+  padding-bottom: 80px;
 
   section {
-    @media (min-width: 1400px) {
-      width: 50%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media (min-width: 1300px) {
       margin-top: 40px;
-    }
-
-    &.wrapper {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: #32213a;
-      p {
-        color: #695d6f;
-      }
     }
 
     & .content {
       width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-  }
-
-  h2 {
-    font-family: 'Exo 2', 'sans-serif';
-    font-size: 40px;
-    line-height: 1.2;
-    color: #474747;
-    font-weight: bolder;
   }
 
   p {
     font-size: 22px;
     line-height: 1.5;
-    color: #474747;
+    color: #686868;
   }
 
   h3 {
+    width: 100%;
     font-family: 'Exo 2', 'sans-serif';
     font-size: 30px;
     color: #474747;
@@ -150,12 +152,13 @@ a {
 
 
 #lvg-img {
-  width: 300px;
+  width: 250px;
+  height: 250px;
   border-radius: 100%;
-  -moz-box-shadow: -6px 20px 15px #ccc;
-  -webkit-box-shadow: -6px 20px 15px #ccc;
-  box-shadow: -6px 20px 15px #ccc;
-  // margin-bottom: 40px;
+  -moz-box-shadow: -2px 5px 5px #ccc;
+  -webkit-box-shadow: -2px 5px 5px #ccc;
+  box-shadow: -2px 5px 5px #ccc;
+  margin-right: 10px;
 }
 
 @-webkit-keyframes colorchange {
@@ -186,3 +189,87 @@ a {
   75%{text-shadow: 0px 0px 30px #C2FF0A}
   100%{text-shadow: 0px 0px 30px #FF0A47}
 }
+
+
+#contact-form {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  .form-field {
+    width: 100%;
+    margin-bottom: 15px;
+    input, textarea {
+      font-family: 'Open Sans';
+      width: 100%;
+      background-color: #f6f6f6;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      box-sizing: border-box;
+      line-height: 1.2;
+    }
+
+    label {
+      line-height: 2;
+    }
+
+    input {
+      font-size: 18px;
+      padding: 15px 17px;
+    }
+
+    textarea {
+      padding: 17px;
+      font-size: 18px;
+    }
+  }
+}
+
+
+.btn {
+  height: 50px;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 8px 20px;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+
+  &.btn-primary {
+    color: #fff;
+    font-family: 'Exo 2', 'sans-serif';
+    font-weight: bolder;
+    background-image: -webkit-gradient(
+    	linear,
+    	left top,
+    	right bottom,
+    	color-stop(0, #893167),
+    	color-stop(0.62, #4A1942)
+    );
+    background-image: -o-linear-gradient(right bottom, #893167 0%, #4A1942 62%);
+    background-image: -moz-linear-gradient(right bottom, #893167 0%, #4A1942 62%);
+    background-image: -webkit-linear-gradient(right bottom, #893167 0%, #4A1942 62%);
+    background-image: -ms-linear-gradient(right bottom, #893167 0%, #4A1942 62%);
+    background-image: linear-gradient(to right bottom, #893167 0%, #4A1942 62%);
+    &:hover {
+      background-image: none;
+      background-color: lighten(#4A1942, 0.5);
+    }
+  }
+}
+
+#intro-header {
+  display: flex;
+  align-items: center;
+}
+ #see-more {
+   cursor: pointer;
+   text-align: center;
+   font-family: 'Exo 2';
+   font-size: 12px;
+   position: absolute;
+   margin-left: auto;
+   margin-right: auto;
+   bottom: 10px;
+ }
