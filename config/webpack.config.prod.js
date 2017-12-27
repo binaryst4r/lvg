@@ -12,6 +12,10 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: process.env.NODE_ENV === "development"
+});
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -123,6 +127,18 @@ module.exports = {
         include: paths.appSrc,
       },
       {
+        test: /\.scss$/,
+        use: extractSass.extract({
+            use: [{
+                loader: "css-loader"
+            }, {
+                loader: "sass-loader"
+            }],
+            // use style-loader in development
+            fallback: "style-loader"
+        })
+      },
+      {
         // "oneOf" will traverse all following loaders until one will
         // match the requirements. When no loader matches it will fall
         // back to the "file" loader at the end of the loader list.
@@ -178,22 +194,11 @@ module.exports = {
             ],
           },
           {
-            test: /\.scss$/,
-            include: paths.appSrc,
-            loaders: [
-              require.resolve('style-loader'),
-              require.resolve('css-loader'),
-              require.resolve('sass-loader')
-
-            ]
-          },
-          {
             exclude: [
               /\.js$/,
               /\.html$/,
               /\.json$/,
-              /\.scss$/,
-              /\.sass$/
+              /\.scss$/
             ],
             loader: require.resolve('file-loader'),
             options: {
@@ -205,6 +210,7 @@ module.exports = {
     ],
   },
   plugins: [
+    extractSass,
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
