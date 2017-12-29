@@ -12,7 +12,7 @@ a {
   color: #893168;
 }
 
-#app {
+.app {
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -20,7 +20,7 @@ a {
   align-items: center;
 }
 
-#app #main-navigation {
+.main_navigation {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -29,27 +29,28 @@ a {
   z-index: 101;
   transition: color 0.5s linear;
   height: 110px;
-
-  &.inverted {
-    color: #474747;
-    transition: all 0.5s linear;
-    background-color: #fff;
-    border-bottom: 1px solid #f6f6f6;
-  }
-
-  #developer-designer {
-    font-family: 'Exo 2', 'sans-serif';
-    font-size: 40px;
-    line-height: 1;
-    color: #474747;
-    font-weight: bolder;
-    width: 40%;
-    text-align: center;
-    transition: all 0.5s linear;
-  }
 }
 
-#app #main-navigation #nav-brand {
+.inverted_navigation {
+  @extend .main_navigation;
+  color: #474747;
+  transition: all 0.5s linear;
+  background-color: #fff;
+  border-bottom: 1px solid #f6f6f6;
+}
+
+.developer_designer {
+  font-family: 'Exo 2', 'sans-serif';
+  font-size: 40px;
+  line-height: 1;
+  color: #474747;
+  font-weight: bolder;
+  width: 40%;
+  text-align: center;
+  transition: all 0.5s linear;
+}
+
+.nav_brand {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,12 +58,12 @@ a {
   font-family: 'Exo 2', 'sans-serif';
 }
 
-#app #main-navigation #nav-brand img {
+.nav_brand img {
   width: 50px;
   margin-right: 10px;
 }
 
-#app #main-navigation #nav-links {
+.nav_links {
   width: 25%;
   display: flex;
   justify-content: space-around;
@@ -70,7 +71,7 @@ a {
   font-weight: bolder;
 }
 
-#top-hero {
+.top_hero {
   h2 {
     font-family: 'Exo 2', sans-serif;
     font-weight: 700;
@@ -105,7 +106,7 @@ a {
   transform: scale(1);
 }
 
-#main-content {
+.main_content {
   width: 100%;
   position: absolute;
   background-color: #fff;
@@ -151,7 +152,7 @@ a {
 }
 
 
-#lvg-img {
+.lvg_img {
   width: 250px;
   height: 250px;
   border-radius: 100%;
@@ -191,12 +192,12 @@ a {
 }
 
 
-#contact-form {
+.contact_form {
   width: 60%;
   display: flex;
   flex-direction: column;
   margin-top: 40px;
-  .form-field {
+  .form_field {
     width: 100%;
     margin-bottom: 15px;
     input, textarea {
@@ -226,7 +227,7 @@ a {
 }
 
 
-.btn {
+.primary_button {
   height: 50px;
   font-size: 18px;
   border-radius: 5px;
@@ -235,41 +236,38 @@ a {
   appearance: none;
   -webkit-appearance: none;
   cursor: pointer;
-
-  &.btn-primary {
-    color: #fff;
-    font-family: 'Exo 2', 'sans-serif';
-    font-weight: bolder;
-    background-image: -webkit-gradient(
-    	linear,
-    	left top,
-    	right bottom,
-    	color-stop(0, #893167),
-    	color-stop(0.62, #4A1942)
-    );
-    background-image: -o-linear-gradient(right bottom, #893167 0%, #4A1942 62%);
-    background-image: -moz-linear-gradient(right bottom, #893167 0%, #4A1942 62%);
-    background-image: -webkit-linear-gradient(right bottom, #893167 0%, #4A1942 62%);
-    background-image: -ms-linear-gradient(right bottom, #893167 0%, #4A1942 62%);
-    background-image: linear-gradient(to right bottom, #893167 0%, #4A1942 62%);
-    &:hover {
-      background-image: none;
-      background-color: lighten(#4A1942, 0.5);
-    }
+  color: #fff;
+  font-family: 'Exo 2', 'sans-serif';
+  font-weight: bolder;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right bottom,
+    color-stop(0, #893167),
+    color-stop(0.62, #4A1942)
+  );
+  background-image: -o-linear-gradient(right bottom, #893167 0%, #4A1942 62%);
+  background-image: -moz-linear-gradient(right bottom, #893167 0%, #4A1942 62%);
+  background-image: -webkit-linear-gradient(right bottom, #893167 0%, #4A1942 62%);
+  background-image: -ms-linear-gradient(right bottom, #893167 0%, #4A1942 62%);
+  background-image: linear-gradient(to right bottom, #893167 0%, #4A1942 62%);
+  &:hover {
+    background-image: none;
+    background-color: lighten(#4A1942, 0.5);
   }
 }
 
-#intro-header {
+.intro_header {
   display: flex;
   align-items: center;
 }
- #see-more {
-   cursor: pointer;
-   text-align: center;
-   font-family: 'Exo 2';
-   font-size: 12px;
-   position: absolute;
-   margin-left: auto;
-   margin-right: auto;
-   bottom: 10px;
- }
+.see_more {
+  cursor: pointer;
+  text-align: center;
+  font-family: 'Exo 2';
+  font-size: 12px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 10px;
+}

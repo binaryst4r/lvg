@@ -3,7 +3,8 @@ import mycon from './images/mycon-gradient-neon.png';
 import larry from './images/larry.jpg';
 import Particle from './animations/particle';
 import {sendMail} from './utils/email/sendgrid';
-
+import styles from './app.scss';
+console.log(styles.btn)
 const colorArray = ["#47FF0A", "0AC2FF", "#FF0AC2", "#C2FF0A", "#FF0A47"]
 const star = {
   x: Math.random() * window.innerWidth,
@@ -24,7 +25,6 @@ const star = {
 
   }
 }
-
 class App extends Component {
   constructor() {
     super();
@@ -218,22 +218,21 @@ class App extends Component {
     } = this.state;
 
     return (
-      <div id="app">
+      <div className="app">
         <nav
-          className={this.state.invertNav ? 'inverted' : ''}
-          id='main-navigation'>
-          <div id="nav-brand">
-            <img alt="" src={mycon} id="mycon"/>
+          className={this.state.invertNav ? styles.inverted_navigation : styles.main_navigation}>
+          <div className={styles.nav_brand}>
+            <img alt="" src={mycon} />
             <h1>
               Larry Gust
             </h1>
           </div>
           <h2
             style={{opacity: this.state.invertNav ? '1' : '0'}}
-            id="developer-designer">
+            className={styles.developer_designer}>
             Developer.designer( )
           </h2>
-          <div id="nav-links">
+          <div className={styles.nav_links}>
             <a
               href="https://www.github.com/binaryst4r"
               target="_blank"
@@ -253,15 +252,15 @@ class App extends Component {
           </div>
         </nav>
 
-        <div onMouseMove={this._handleMouseMove}  id="top-hero">
+        <div onMouseMove={this._handleMouseMove}  className={styles.top_hero}>
           <h2 style={{opacity: 1 - `${scrollY/500}`}}>
-            Stay <span className="funky">Creative</span>
+            Stay <span className={styles.funky}>Creative</span>
           </h2>
-          <p style={{opacity: 1 - `${scrollY/350}`}} className="subheader">
+          <p style={{opacity: 1 - `${scrollY/350}`}} className={styles.subheader}>
             (move mouse for more effect)
           </p>
 
-          <div onClick={() => this.scrollToContent()} id="see-more">
+          <div onClick={() => this.scrollToContent()} className={styles.see_more}>
             see more<br/>
             &darr;
             &darr;
@@ -283,9 +282,9 @@ class App extends Component {
 
         <div
           style={{top: window.innerHeight}}
-          id="main-content">
-          <section id="intro-header">
-            <img alt="Larry Gust" id="lvg-img" src={larry}/>
+          className={styles.main_content}>
+          <section className={styles.intro_header}>
+            <img alt="Larry Gust" className={styles.lvg_img} src={larry}/>
             <p>
               I'm Larry - a web developer with a knack for creating awesome user experiences.
               I'm currently living in my hometown of Chicago, IL and working as a freelance web developer.
@@ -322,22 +321,22 @@ class App extends Component {
             :
               <form
                 onSubmit={this.submitForm}
-                id="contact-form">
-                <div className="form-field">
+                className={styles.contact_form}>
+                <div className={styles.form_field}>
                   <input
                     placeholder="Email address"
                     type="email"
                     value={email}
                     onChange={(e) => this.setState({email: e.target.value})}/>
                 </div>
-                <div className="form-field">
+                <div className={styles.form_field}>
                   <input
                     onChange={(e) => this.setState({favoriteMovie: e.target.value})}
                     placeholder="What's your favorite movie?"
                     type="text"
                     value={favoriteMovie}/>
                 </div>
-                <div className="form-field">
+                <div className={styles.form_field}>
                   <textarea
                     onChange={(e) => this.setState({message: e.target.value})}
                     placeholder="Introduce yourself..."
@@ -345,7 +344,7 @@ class App extends Component {
                     value={message}/>
                 </div>
 
-                <button className="btn btn-primary" type="submit">
+                <button className={styles.primary_button} type="submit">
                   Submit
                 </button>
               </form>
