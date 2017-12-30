@@ -48,7 +48,6 @@
     "webpack-manifest-plugin": "1.3.2",
     "whatwg-fetch": "2.0.3"
   },
-  "proxy": "https://api.sendgrid.com/v3/mail/send",
   "scripts": {
     "start": "node scripts/start.js",
     "predeploy": "npm run build",
