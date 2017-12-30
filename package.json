@@ -38,6 +38,7 @@
     "react": "^16.1.0",
     "react-dev-utils": "^4.2.1",
     "react-dom": "^16.1.0",
+    "sass-loader": "^6.0.6",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
@@ -53,8 +54,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"
