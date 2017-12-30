@@ -171,13 +171,6 @@ class App extends Component {
     // this.shootStar()
   }
 
-  // update() {
-  //   let ctx = this.refs.canvas.getContext('2d');
-  //   // circle
-  //
-  //   requestAnimationFrame(() => {this.update()});
-  // }
-
   _handleMouseMove = (e) => {
     this.setState({
       mouse: {
@@ -256,9 +249,6 @@ class App extends Component {
           <h2 style={{opacity: 1 - `${scrollY/500}`}}>
             Stay <span className={styles.funky}>Creative</span>
           </h2>
-          <p style={{opacity: 1 - `${scrollY/350}`}} className={styles.subheader}>
-            (move mouse for more effect)
-          </p>
 
           <div onClick={() => this.scrollToContent()} className={styles.see_more}>
             see more<br/>

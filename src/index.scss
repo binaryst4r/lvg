@@ -28,7 +28,13 @@ a {
   position: fixed;
   z-index: 101;
   transition: color 0.5s linear;
-  height: 110px;
+  min-height: 110px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    padding-bottom: 30px;
+    background: rgba(0, 0, 0, 0.8);
+  }
 }
 
 .inverted_navigation {
@@ -48,6 +54,10 @@ a {
   width: 40%;
   text-align: center;
   transition: all 0.5s linear;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 }
 
 .nav_brand {
@@ -56,6 +66,10 @@ a {
   justify-content: center;
   width: 25%;
   font-family: 'Exo 2', 'sans-serif';
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 }
 
 .nav_brand img {
@@ -66,9 +80,16 @@ a {
 .nav_links {
   width: 25%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   font-family: 'Exo 2', 'sans-serif';
   font-weight: bolder;
+  @media (min-width: 1400px) {
+    justify-content: space-around;
+  }
+  @media (max-width: 767px) {
+    width: 100%;
+    justify-content: space-around;
+  }
 }
 
 .top_hero {
@@ -86,6 +107,10 @@ a {
       -o-animation: colorchange 10s ease infinite;
       animation: colorchange 10s ease infinite;
       animation-direction: alternate-reverse;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 40px;
     }
   }
   font-size: 22px;
@@ -132,6 +157,11 @@ a {
       flex-direction: column;
       align-items: center;
     }
+
+    @media (max-width: 767px) {
+      width: 85%;
+    }
+
   }
 
   p {
@@ -159,7 +189,15 @@ a {
   -moz-box-shadow: -2px 5px 5px #ccc;
   -webkit-box-shadow: -2px 5px 5px #ccc;
   box-shadow: -2px 5px 5px #ccc;
-  margin-right: 10px;
+  margin-bottom: 40px;
+
+  @media (max-width: 767px) {
+    width: 150px;
+    height: 150px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
 }
 
 @-webkit-keyframes colorchange {
@@ -223,6 +261,9 @@ a {
       padding: 17px;
       font-size: 18px;
     }
+  }
+  @media (max-width: 767px) {
+    width: 100%;
   }
 }
 
