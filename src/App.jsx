@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import mycon from './images/mycon-gradient-neon.png';
 import larry from './images/larry.jpg';
 import Particle from './animations/particle';
-import {sendMail} from './utils/email/sendgrid';
 import styles from './app.scss';
-console.log(styles.btn)
 const colorArray = ["#47FF0A", "0AC2FF", "#FF0AC2", "#C2FF0A", "#FF0A47"]
 const star = {
   x: Math.random() * window.innerWidth,
@@ -65,10 +63,17 @@ class App extends Component {
       cache: 'default',
       body: JSON.stringify({email: email, favorite_movie: favoriteMovie, message: message})
     }
-    fetch("http://localhost:3000/webhooks/sendgrid", init).then((response) => {
+    fetch("https://lvg-api.herokuapp.com/webhooks/sendgrid", init).then((response) => {
       this.setState({
         showConfirmation: true
       })
+
+      setTimeout(() => this.setState({
+        showConfirmation: false,
+        message: '',
+        email: '',
+        favoriteMovie: ''
+      }), 5000)
     })
   }
 
@@ -80,10 +85,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log(process.env.REACT_APP_SENDGRID_API_KEY)
     window.addEventListener('resize',  this.handleResize);
     window.addEventListener('scroll',  this._handleScroll);
-    // window.addEventListener('click',  this.shootStar);
     let particleCtx = this.refs.canvas.getContext('2d');
     this.setState({
       particleCtx: particleCtx,
@@ -182,7 +185,7 @@ class App extends Component {
 
   _handleScroll = () => {
     this.setState({
-      invertNav: window.scrollY >= window.innerHeight,
+      invertNav: window.scrollY >= window.innerHeight - 30,
       scrollY: window.scrollY
     })
   }
@@ -195,7 +198,7 @@ class App extends Component {
     e.preventDefault()
     const {email, favoriteMovie, message} = this.state;
     if (email && favoriteMovie && message) {
-      sendMail(email, favoriteMovie, message)
+      this.sendMail(email, favoriteMovie, message)
     }
   }
 
@@ -234,12 +237,14 @@ class App extends Component {
             </a>
             <a
               target="_blank"
-              href="https://www.linkedin.com/in/binaryst4r">
+              href="https://www.linkedin.com/in/binaryst4r"
+              rel="noopener noreferrer">
               linkedin
             </a>
             <a
               target="_blank"
-              href="//s3.us-east-2.amazonaws.com/lvg/resume_2018.pdf">
+              href="//s3.us-east-2.amazonaws.com/lvg/resume_2018.pdf"
+              rel="noopener noreferrer">
               resume
             </a>
           </div>
@@ -307,7 +312,17 @@ class App extends Component {
             </p>
 
             {this.state.showConfirmation ?
-              <div id="confirmation"></div>
+              <div className={styles.confirmation}>
+                <img
+                  alt="thanks"
+                  className={styles.thanks}
+                  src="https://media.giphy.com/media/KJ1f5iTl4Oo7u/giphy.gif"/>
+                <br/>
+                <center>
+                  <p>I'll be in touch soon!</p>
+                </center>
+
+              </div>
             :
               <form
                 onSubmit={this.submitForm}
