@@ -3,7 +3,7 @@ import mycon from './images/mycon-gradient-neon.png';
 import larry from './images/larry.jpg';
 import Particle from './animations/particle';
 import styles from './app.scss';
-const colorArray = ["#47FF0A", "0AC2FF", "#FF0AC2", "#C2FF0A", "#FF0A47"]
+const colorArray = ["#f9c80e", "f86624", "#ea3546", "#662e9b", "#43bccd"]
 const star = {
   x: Math.random() * window.innerWidth,
   y: Math.random() * window.innerHeight,
@@ -226,26 +226,26 @@ class App extends Component {
           <h2
             style={{opacity: this.state.invertNav ? '1' : '0'}}
             className={styles.developer_designer}>
-            Developer.designer( )
+            Full Stack Engineer
           </h2>
           <div className={styles.nav_links}>
             <a
               href="https://www.github.com/binaryst4r"
               target="_blank"
               rel="noopener noreferrer">
-              github
+              GitHub
             </a>
             <a
               target="_blank"
-              href="https://www.linkedin.com/in/binaryst4r"
+              href="https://www.linkedin.com/in/larryvgust"
               rel="noopener noreferrer">
-              linkedin
+              LinkedIn
             </a>
             <a
               target="_blank"
-              href="//s3.us-east-2.amazonaws.com/lvg/resume_2018.pdf"
+              href="//lvgweb.s3.us-east-2.amazonaws.com/resume-2022.pdf"
               rel="noopener noreferrer">
-              resume
+              Resume
             </a>
           </div>
         </nav>
@@ -282,33 +282,53 @@ class App extends Component {
             <img alt="Larry Gust" className={styles.lvg_img} src={larry}/>
             <p>
               I'm Larry - a web developer with a knack for creating awesome user experiences.
-              I'm currently living in my hometown of Chicago, IL and working as a freelance web developer.
-              At the moment, I am digging react, using a ruby backend when needed.
+              I'm currently living an working out of Denver, CO and loving it! At the moment, 
+              I am digging using React / TypeScript and tailwindcss for building UIs.
             </p>
+            <span><b>Other technology I've been using:</b></span><br/>
+            <ul>
+              <li>
+                GraphQL
+              </li>
+              <li>
+                AWS
+              </li>
+              <li>
+                Ruby (on or off Rails)
+              </li>
+              <li>
+                Firebase
+              </li>
+              <li>
+                Terraform
+              </li>
+            </ul>
           </section>
 
           <section>
             <h3>My philosophy</h3>
             <p>
-              Whether it's a simple website, or a complex web-application, the focus should be on users of the product.
-              Knowing how to <em>design for your user</em> is the key to providing the best experience.
+              Do what you love, love what you do.
             </p>
           </section>
 
           <section>
-            <h3>Background</h3>
+            <h3>About Me</h3>
             <p>
-              I've worked on projects in a wide array of industries, doing design and development. Most recently,
-              I worked with a startup called <a href="https://www.getwiseapple.com">Wise Apple</a>,
-              where I built and managed the consumer-facing web platform, as well as the internal tools, with 2 other devs.
+              Born and raised just outside Chicago, IL. I have been a professional engineer since 2013 - working for myself, startups, and even a fortune 6 company.
+              Most of my experience has been working within the startup world, I enjoy the fast paced nature and wearing 
+              multiple hats.
+            </p>
+            <p>
+              In my free time I love to golf, game, see live music, camp, and ski! I also code for fun, and hope one day one of my many
+              half-complete app endeavors will be useful 😄
             </p>
           </section>
 
           <section>
             <h3>Get in touch!</h3>
             <p>
-              I am currently taking new work so please hit me up if you have a cool idea!
-              I am also open to full time opportunities with the right company. Cheers!
+              Even if I am working full time, I would love to hear your idea!
             </p>
 
             {this.state.showConfirmation ?

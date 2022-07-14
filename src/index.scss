@@ -9,7 +9,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #893168;
+  color: #662e9b;
 }
 
 .app {
@@ -47,7 +47,7 @@ a {
 
 .developer_designer {
   font-family: 'Exo 2', 'sans-serif';
-  font-size: 40px;
+  font-size: 30px;
   line-height: 1;
   color: #474747;
   font-weight: bolder;
@@ -149,7 +149,7 @@ a {
     width: 50%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     @media (min-width: 1300px) {
       margin-top: 40px;
     }
@@ -167,7 +167,7 @@ a {
 
   }
 
-  p {
+  p, span, li {
     font-size: 22px;
     line-height: 1.5;
     color: #686868;
@@ -193,6 +193,7 @@ a {
   -webkit-box-shadow: -2px 5px 5px #ccc;
   box-shadow: -2px 5px 5px #ccc;
   margin-bottom: 40px;
+  align-self: center;
 
   @media (max-width: 767px) {
     width: 150px;
